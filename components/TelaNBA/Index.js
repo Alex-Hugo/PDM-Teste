@@ -1,7 +1,19 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text,FlatList,StyleSheet, Button } from 'react-native';
+import { useDados } from '../../API/Dados';
 
-const TelaNBA = ({ navigation }) => {
+const TelaNBA = () => {
+
+  const { dados, isLoading, isError } = useDados();
+
+  if (isLoading) {
+    return <Text>Carregando...</Text>;
+  }
+
+  if (isError) {
+    return <Text>Ocorreu um erro ao carregar os dados</Text>;
+  }
+
   return (
     <View>
       <Text>Tela da NBA</Text>
@@ -13,6 +25,21 @@ const TelaNBA = ({ navigation }) => {
         title="Ir para a tela do Futebol Brasileiro"
         onPress={() => navigation.navigate('TelaFutebolBrasileiro')}
       />
+      <View>
+        <FlatList>
+          data={dados}
+          keyExtractor={(item) => item.objectId}
+          numColums={4}
+          renderItem={({item}) => {
+          <View>
+            <Image source={{ uri: item.logo_time.url }} />
+            <Text>{item.nome}</Text>
+            <Text>{item.cidade}</Text>
+            <Text>{item.estrela_do_time}</Text>
+            </View>
+          }}
+        </FlatList>
+      </View>
     </View>
   );
 };
