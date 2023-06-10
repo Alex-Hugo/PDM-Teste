@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, View, Text, Button,Image } from 'react-native';
+import {StyleSheet, View, Text,Image } from 'react-native';
+import { Button} from '@rneui/themed';
 
 const TelaFutebolBrasileiro = ({ navigation }) => {
   return (
@@ -7,9 +8,38 @@ const TelaFutebolBrasileiro = ({ navigation }) => {
       <Text></Text>
       <Button
         title="Ir para a tela inicial"
+        icon={{
+          name: 'home',
+          size: 15,
+          color: 'white',
+        }}
+        iconContainerStyle={{ marginRight: 10 }}
+              titleStyle={{ fontWeight: '700' }}
+              buttonStyle={{
+                backgroundColor: 'rgba(90, 154, 230, 1)',
+                borderColor: 'transparent',
+                borderWidth: 0,
+                borderRadius: 30,
+              }}
+              containerStyle={{
+                width: 300,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
         onPress={() => navigation.navigate('TelaHome')}
       />
       <Button
+      buttonStyle={{
+        backgroundColor: 'rgba(90, 154, 230, 1)',
+        borderColor: 'transparent',
+        borderWidth: 0,
+        borderRadius: 30,
+      }}
+      containerStyle={{
+        width: 300,
+        marginHorizontal: 50,
+        marginVertical: 5,
+      }}
         title="Ir para a tela NBA"
         onPress={() => navigation.navigate('TelaNBA')}
       />
