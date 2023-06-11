@@ -1,17 +1,16 @@
 import axios from "axios";
 import useSWR from 'swr';
 
-const API_BASE_URL = "https://backend-aos-production.up.railway.app/"; // altere para a sua URL de API
+const API_BASE_URL = "https://backend-aos-production.up.railway.app"; // altere para a sua URL de API
 
 export const fetchDados = async () => {
   try {
-    const response = await axios.get(${API_BASE_URL}/times, {
+    const response = await axios.get(`${API_BASE_URL}/times`, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
     });
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -20,7 +19,7 @@ export const fetchDados = async () => {
 };
 
 export const useDados = () => {
-  const { data, error, mutate } = useSWR('dados', fetchDados);
+  const { data, error, mutate } = useSWR('dados', fetchDados, );
 
   return {
     dados: data,
